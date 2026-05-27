@@ -120,5 +120,22 @@ int main() {
         printf("%d ", a[i]);
     }
 
+
+    printf("\n \n");
+    // Cay tren bang
+    int b[] = {10, 11, 54, 32, 106, 38, 78, 203, 16, 84, 17, 39, 15};
+    printf("\n Cay 2 \n");
+    for(int i = 0; i < 13; i++) {    
+    printf("%d ", b[i]);
+    }
+    printf("\n");
+    HeapSort(b, 13);
+    
+    printf("\n Ket qua cuoi \n");
+
+    for(int i = 0; i < 13; i++) {   
+        printf("%d ", b[i]);
+    }
+
     return 0;
 }
