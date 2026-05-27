@@ -81,9 +81,24 @@ void Heapify(int arr[], int n, int i) {
     }
 }
 
-void Build_Heap(int arr[], int n) {
+void Print_Array(int* a, int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+}
+
+void HeapSort(int arr[], int n) {
     for (int i = (n / 2) - 1; i >= 0; i--) {
         Heapify(arr, n, i);
+    }
+    Print_Array(arr, n);
+
+    for (int i = n - 1; i > 0; i--) {
+        Swap(&arr[0], &arr[i]);
+
+        Heapify(arr, i, 0);
+        Print_Array(arr, n);
     }
 }
 
@@ -91,11 +106,19 @@ int main() {
     // Cay trong slide
     Tree* T = Create_Tree();
     int a[] = {0, 4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
-    for(int i = 0; i < 11; i++) {
-        Insert(T, a[i]);
-    }
 
-    Print_Tree(T->root);
+    printf("\n Cay 1 \n");
+
+    for(int i = 0; i < 11; i++) {   
+        printf("%d ", a[i]);
+    }
+    HeapSort(a, 11);
+    
+    printf("\n Ket qua cuoi \n");
+
+    for(int i = 0; i < 11; i++) {   
+        printf("%d ", a[i]);
+    }
 
     return 0;
 }
