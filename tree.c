@@ -28,3 +28,17 @@ Tree* Create_Tree() {
     return t;
 }
 
+void Insert_Recursive(Node** Current_Node, int data) {
+    if(*Current_Node == NULL) {
+        *Current_Node = Create_Node(data);
+        return;
+    }
+
+    if(data < (*Current_Node)->data) {
+        Insert_Recursive(&((*Current_Node)->Left), data);
+    }
+
+    if(data > (*Current_Node)->data) {
+        Insert_Recursive(&((*Current_Node)->Right), data);
+    }
+}
