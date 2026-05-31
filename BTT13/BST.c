@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
+typedef struct Node{
     int data;
     struct Node* left;
     struct Node* right;
@@ -58,12 +58,12 @@ void Print_Tree(Node* Current_Node) {
 }
 
 void Search(Node* Current_Node, int data, int count) {
-    if(Current_Node->data == NULL) {
+    if(Current_Node == NULL) {
         printf("khong tim thay gia tri can tim");
         return;
     }
     if(Current_Node->data == data) {
-        printf("Node so: %d, co gia tri la: %d", count, data);
+        printf("Node can tim nam o vi tri so: %d", count);
         return;
     }
     else {
@@ -82,4 +82,19 @@ void Create_Tree(Tree* t, int* arr, int arr_size) {
     for(int i = 0; i < arr_size; i++) {
         Insert(t, arr[i]);
     }
+}
+
+int main() {
+    Tree* t = (Tree*)malloc(sizeof(Tree));
+    t->root = NULL;
+    t->total_node = 0;
+
+    int arr[] = {2001, 2002, 2006, 2007, 2003, 2004, 2005, 2001, 1999, 2004};
+    int arr_size = sizeof(arr) / sizeof(arr[0]);
+    
+    Create_Tree(t, arr, arr_size);
+    Print_Tree(t->root);
+    printf("\n");
+    Search(t->root, 2004, 0);
+    return 0;
 }
