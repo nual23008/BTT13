@@ -23,3 +23,31 @@ Tree* Create_Tree() {
     t->root = NULL;
 }
 
+void Insert_Recursive(Node** Current_Node, int data) {
+    if((*Current_Node) == NULL) {
+        *Current_Node = Create_Node(data);
+        return;
+    }
+    if((*Current_Node)->data < data) {
+        if((*Current_Node)->left == NULL) {
+            (*Current_Node)->left = Create_Node(data);
+            return;
+        }
+        else {
+            Insert_Recursive((*Current_Node)->left, data);
+        }
+    }
+    else {
+        if((*Current_Node)->right == NULL) {
+            (*Current_Node)->right = Create_Node(data);
+            return;
+        }
+        else {
+            Insert_Recursive((*Current_Node)->right, data);
+        }
+    }
+}
+
+void Insert(Tree* t, int data) {
+    Insert_Recursive(&(t->root), data);
+}
