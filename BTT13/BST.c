@@ -17,13 +17,8 @@ Node* Create_Node(int data) {
 
 typedef struct {
     Node* root;
+    int total_node;
 } Tree;
-
-Tree* Create_Tree() {
-    Tree* t = (Tree*)malloc(sizeof(Tree));
-    t->root = NULL;
-    return t;
-}
 
 void Insert_Recursive(Node** Current_Node, int data) {
     if((*Current_Node) == NULL) {
@@ -80,5 +75,11 @@ void Search(Node* Current_Node, int data, int count) {
             count++;
             Search(Current_Node->right, data, count);
         }
+    }
+}
+
+void Create_Tree(Tree* t, int* arr, int arr_size) {
+    for(int i = 0; i < arr_size; i++) {
+        Insert(t, arr[i]);
     }
 }
