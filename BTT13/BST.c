@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct {
     int data;
@@ -19,8 +20,9 @@ typedef struct {
 } Tree;
 
 Tree* Create_Tree() {
-    Tree* t;
+    Tree* t = (Tree*)malloc(sizeof(Tree));
     t->root = NULL;
+    return t;
 }
 
 void Insert_Recursive(Node** Current_Node, int data) {
@@ -28,13 +30,13 @@ void Insert_Recursive(Node** Current_Node, int data) {
         *Current_Node = Create_Node(data);
         return;
     }
-    if((*Current_Node)->data < data) {
+    if((*Current_Node)->data >= data) {
         if((*Current_Node)->left == NULL) {
             (*Current_Node)->left = Create_Node(data);
             return;
         }
         else {
-            Insert_Recursive((*Current_Node)->left, data);
+            Insert_Recursive(&(*Current_Node)->left, data);
         }
     }
     else {
@@ -43,11 +45,40 @@ void Insert_Recursive(Node** Current_Node, int data) {
             return;
         }
         else {
-            Insert_Recursive((*Current_Node)->right, data);
+            Insert_Recursive(&(*Current_Node)->right, data);
         }
     }
 }
 
 void Insert(Tree* t, int data) {
     Insert_Recursive(&(t->root), data);
+}
+
+void Print_Tree(Node* Current_Node) {
+    if(Current_Node != NULL) {
+        Print_Tree(Current_Node->left);
+        printf("%d ", Current_Node->data);
+        Print_Tree(Current_Node->right);
+    }
+}
+
+void Search(Node* Current_Node, int data, int count) {
+    if(Current_Node->data == NULL) {
+        printf("khong tim thay gia tri can tim");
+        return;
+    }
+    if(Current_Node->data == data) {
+        printf("Node so: %d, co gia tri la: %d", count, data);
+        return;
+    }
+    else {
+        if(Current_Node->data >= data) {
+            count++;
+            Search(Current_Node->left, data, count);
+        }
+        else {
+            count++;
+            Search(Current_Node->right, data, count);
+        }
+    }
 }
