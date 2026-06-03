@@ -59,11 +59,11 @@ void Print_Tree(Node* Current_Node) {
 
 void Search(Node* Current_Node, int data, int count) {
     if(Current_Node == NULL) {
-        printf("khong tim thay gia tri can tim");
+        printf("khong tim thay nam sinh can tim");
         return;
     }
     if(Current_Node->data == data) {
-        printf("Node can tim nam o vi tri so: %d", count);
+        printf("Da tim thay nam sinh!");
         return;
     }
     else {
